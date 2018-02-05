@@ -39,7 +39,7 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 ## VirtualBox VM Setup <a id="First"></a>
 
 
-1. Go to [Ubuntu](https://www.ubuntu.com/download/server\) and download the LTS server version. 
+1. Go to [Ubuntu](https://www.ubuntu.com/download/server) and download the LTS server version. 
 
 - Install Ubuntu Server in Virtual Machine
 - On Virtual Box go to top left corner to New to create the virtual box.
