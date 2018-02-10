@@ -1,7 +1,10 @@
-# Debian Email Box
+---
+layout: post
+title: Ubuntu VSFTPD
+author: Carlos Leon
+---
 
-## Summary 
-This is the setup guide for the Debian Email box. We will be using a Postfix, dovecot, and webmail setup.
+# Debian Email Box
 
 ### Contact
 - Twitter: @Dubliyu
@@ -22,7 +25,13 @@ This is the setup guide for the Debian Email box. We will be using a Postfix, do
 2. Have the [ISP](https://silexone.github.io/guides/nestor/ISPsetup.html) gateway running.
 3. Have pfSense running.
 
+## Summary 
+An Email system is comprised of a couple of parts. First is the Mail Transport Agent or MTA for short. The MTA gets and send messages over SMTP - Postfix will be our MTA. Then the MTA passes its data off to the Mail Delivery Agent or MDA for short. The MDA, normally, uses IMAP or POP3 protocol to save the emails in an users inbox. We will be using Dovecot as our MDA with IMAP protocol. The specific differences between IMAP and POP3 aren't necessary to know, but in general IMAP is for reading mail on the server and leaving it there, and POP3 is for reading mail on a local machine copied from the server. In our case, IMAP is simpler to setup. Lastly, is the Mail User Agent or MUA. This can refer to the user in general, or specifically to the way the user accesses their inbox. We will be using webmail as our MUA.
 
+TL;DR
+This is the setup guide for the Debian Email box. We will be using a Postfix as our MTA, dovecot as MDA, and webmail as our MUA.
+
+![diagram2](diagram2.png)
 <br>
 
 <a id="setup-vm"></a>
@@ -76,14 +85,32 @@ Here we will install Postfix.
     ```
     
     Now open up /etc/host.conf file with `vi` configure it so it looks like so.
+    What this does is essentially that whenever the server tries to go to any external resource, i.e. the Internet, it will first look at the host file. 
     ```bash
     order hosts, bind
     multi on
     ```
     
-    Now we add our ip and domain name 'debian-email.com' to the host file so it will internally resolve. Make sure someone on the DNS server has debian-email.com point to this box - or add it manually to each windows/linux host file.
+    Now we add our ip and domain name 'debian-email.com' to the host file so it will internally resolve. Essentially, whenever out server tries to go to debian-email.com it will look at the host file, see theres a rule telling it to point to a specific ip, and go to that IP. And that IP will be the servers own IP.
     
-    First, get the IP by running `ifconfig` . The info we want will appear like so  `inet 10.0.2.15` . Now run these two commands, use your IP instead of 10.0.2.15
+    First, get the IP by running `ifconfig` .
+    
+    ```bash
+    $ ifconfig
+    eth0      Link encap:Ethernet  HWaddr fc:aa:14:29:7a:11
+          inet addr:10.0.2.15 Bcast:192.168.0.255  Mask:255.255.255.0
+          inet6 addr: ::b9bf:5d35:cc8c:ff30/64 Scope:Global
+          inet6 addr: ::d498:a9c5:e386:65a9/128 Scope:Global
+          inet6 addr: fe80::b9bf:5d35:cc8c:ff30/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+    ```
+    Yours will look similar, now look for `inet`, use your IP instead of 10.0.2.15.
+    
+    Now actually set the rules.
     ```bash
     hostnamectl set-hostname mail.debian-email.com
     echo "10.0.2.15" debian-email.com mail.debian-email.com >> /etc/hosts
@@ -108,13 +135,18 @@ Here we will install Postfix.
     myhostname=mail.debian-email.com
     
     # Add the following line
-    mydomain=debian-email.com
-    home_mailbox = Maildir/
-    smtpd_sasl_type = dovecot
-    smtpd_sasl_path = private/auth
-    smtpd_sasl_auth_enable = yes
-    smtpd_sasl_security_options = noanonymous
-    smtpd_sasl_local_domain = $myhostname
+    mydomain=debian-email.com  # Allows us to use use user@debian-email.com
+    home_mailbox = Maildir/    # Tels Dovecot where to dump our mail
+    smtpd_sasl_type = dovecot  # Whaat to do for authentication - Dovecot
+    smtpd_sasl_path = private/auth  # Config file for auth
+    smtpd_sasl_auth_enable = yes  # Use authentication
+    smtpd_sasl_security_options = noanonymous  # Dissalow anonymous login
+    smtpd_sasl_local_domain = $myhostname  # use debian-email.com for domain
+    
+    # permit_auth_destination means skip auth if we are the destination
+    # permit_mynetworks means allow networks specified in my_networks
+    # permit_sasl_authenticated means allow if sasl auth (what we are using)
+    # reject, if no other restriction allows it, reject everything
     smtpd_recipient_restrictions = permit_mynetworks,permit_auth_destination,permit_sasl_authenticated,reject
     ```
     

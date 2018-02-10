@@ -1,7 +1,10 @@
-# VSFTP GUIDE
+---
+layout: post
+title: Debian Email
+author: Carlos Leon
+---
 
-## Summary 
-This is the setup guide for a vsftp box
+# VSFTP GUIDE
 
 ### Contact
 - Twitter: @Dubliyu
@@ -15,7 +18,7 @@ This is the setup guide for a vsftp box
 4. [Secure VSFTPD](#secure)
 5. [Users](#users)
 6. [Testing](#testing)
-7. [Useful Commands](#useful)
+7. [Wrote some useful Commands here](/../../knowledge/leon/ftp_shell.md)
 
 <a id="pre-reqs"></a>
 ## Prerequisites 
@@ -23,6 +26,13 @@ This is the setup guide for a vsftp box
 2. Have the [ISP](https://silexone.github.io/guides/nestor/ISPsetup.html) gateway running.
 3. Have pfSense running.
 
+
+## Summary 
+This is the setup guide for a vsftp box. VSFTPD is an FTP server.
+An FTP server makes some directory available so that people can connect to the server
+and transfer files over the File Transfer Protocol i.e. FTP.
+It common, it's tedious, and has been the source of many exploits over the years.
+So we can expected in SECDC.
 
 <br>
 
@@ -34,7 +44,7 @@ This is the setup guide for a vsftp box
    
 2. Select default options during the installation. 
 3. Now you should see a terminal login prompt. Login.
-![1](/blog/content/images/2018/02/1.PNG)
+![ubuntu_login](ubuntu_login.PNG)
 <br>
 
 <a id="install"></a>
@@ -73,7 +83,8 @@ Here we will install and configure vsftpd. Some background knowledge, FTP server
 ## Secure vsftpd
 Here we will configure and secure our vsftpd server. Protip: on the ubuntu machine the conf files is in `/etc/vsftpd.conf` but in non-debian distros its generally inside `/etc/vsftpd/vsftpd.conf`.
  
-1.  First generate some keys
+1.  First generate some keys.
+    This guy [here](https://youtu.be/GSIDS_lvRv4) give an awesome explanation. We will secure our FTP traffic in this way.
     
     ```bash
     openssl genrsa -des3 -out FTP.key
@@ -81,14 +92,14 @@ Here we will configure and secure our vsftpd server. Protip: on the ubuntu machi
     Enter pass phrase fpr FTP.key: {enter a passphrase}
     ```
     You should see something like this
-    ![3](/blog/content/images/2018/02/3.PNG)
+    ![gen_key](gen_key.PNG)
     
     Now make the cert request
     ```bash
     openssl req -new -key FTP.key -out certificate.csr
     ```
     You should see this
-    ![4-1](/blog/content/images/2018/02/4-1.PNG)
+    ![csr](csr.PNG)
     
     Next, lets get rid of the pass phrase on the key
     ```bash
@@ -101,7 +112,7 @@ Here we will configure and secure our vsftpd server. Protip: on the ubuntu machi
     openssl x509 -req -days 365 -in certificate.csr -signkey ftp.key -out my_cert.crt
     ```
     You should see this
-    ![5-1](/blog/content/images/2018/02/5-1.PNG)
+    ![private](private.PNG)
     ```
     # and lastly move them to a safe plave
     cp ftp.key /etc/ssl/private/
@@ -165,14 +176,14 @@ Lets make sure everything works
     ```
     
     You should now see something like so
-    ![2-1](/blog/content/images/2018/02/2-1.PNG)
+    ![ftp](ftp.PNG)
     
 <a id="test-secure"></a>
 
 2. Test localhost - securely
 
     First try to login using the process in step 1. You should get an error like so
-    ![7](/blog/content/images/2018/02/7.PNG)
+    ![ftp_failed](ftp_failed.PNG)
     
     Next lets try to login securely
     ```bash
@@ -193,19 +204,7 @@ Lets make sure everything works
     ...
     ```
     Like so...
-    ![8](/blog/content/images/2018/02/8.PNG)
+    ![lftpd_ls](lftpd_ls.PNG)
 <br>
-
-<a id="useful-commands"></a>
-## Useful Commands
-Here some helpful commands for maneuvering inside the `ftp> ____` shell
-* pwd, ls, cd, rmdir, mkdir - work as expected
-* lcd - changes directory for client
-* bye - closes connection 
-* get file1 - downloads file1 from server to client
-* mget file1 file2 - get fro multiple files
-* delete file1 - deletes file1 from server
-* put file1 - puts file1 on the server from the client
-* mput file1 file2 - puts multiple files
     
 <small>Photo by [Ricardo Gomez Angel](https://unsplash.com/@ripato?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit) / [Unsplash](https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit)</small>
