@@ -45,6 +45,7 @@ So we can expected in SECDC.
 2. Select default options during the installation. 
 3. Now you should see a terminal login prompt. Login.
 ![ubuntu_login](ubuntu_login.PNG)
+
 <br>
 
 <a id="install"></a>
