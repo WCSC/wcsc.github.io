@@ -166,7 +166,7 @@ PFsense is an open source firewall that is based on the FreeBSD operating system
    
    ![](aftermath.PNG)
    
-   Next, we will finish the PFsense configuration on the Windows 10 user interface. Reason being, the rest of the configuration steps will be much more difficult to do on the command line. Logout by typing in `0` and move onto the Windows 10 setup guide (coming soon). 
+   Next, we will finish the PFsense configuration on the Windows 10 user interface. Reason being, the rest of the configuration steps will be much more difficult to do on the command line. Keep PFsense running and move onto the Windows 10 setup guide (coming soon). 
    
 ## Troubleshooting <a id="troubleshooting"></a>
 
