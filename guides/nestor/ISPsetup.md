@@ -17,6 +17,7 @@ Author: Nestor N Torres
 5. [Ubuntu Server Configuration](#Third)
 
 ## Prerequisites <a id="preinfo"></a>
+1. Have [Network Adapter setup](link-to-guide)running
 1. If you have not setup your network adapter look here https://goo.gl/vs4cHC.
 2. Just copy the Prerequisites of peoples guides before yours here.
 3. Have your [virtual environment](link-to-guide) configured
@@ -24,17 +25,16 @@ Author: Nestor N Torres
 5. Have [pfSense](link-to-guide) running.
 
 ## Summary <a id="Summary"></a>
-This tutorial will show you how to setup the ISP server you will need for your lab.
+The logical ideal of this tutorial is for you to be able to setup the ISP server for your lab. The ISP lab is the one that allow you to connect your other lab to the internet think at it as your internet provider at home.  
+
 
 <br>
 
 | Network adapters | Description                             |
 |------------------|---------------------------------        |
 | Adapter 1        | Leave it to NAT                         |
-| Adapter 2        | Change to Host-only (vboxnet2)          |
+| Adapter 2        | Change to Host-only (WAN Environment)   |
 
-##### Supporting detail 
-The logical ideal of this tutorial is for you to be able to setup the ISP server for your lab. The ISP lab is the one that allow you to connect your other lab to the internet think at it as your internet provider at home.  
 
 ## VirtualBox VM Setup <a id="First"></a>
 
@@ -42,37 +42,37 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 1. Go to [Ubuntu](https://www.ubuntu.com/download/server) and download the LTS server version. 
 
 - Install Ubuntu Server in Virtual Machine
-- On Virtual Box go to top left corner to New to create the virtual box.
+- On Virtual Box go to top left corner to `New` to create the virtual box.
 
 ![Section2](https://i.imgur.com/QnoKC2F.png) 
 
 - Create the name of this Box recommended name `ISP Ubuntu`
-- In Type choose Linux if is not auto setected
+- In Type choose `Linux` if is not auto setected
 - In Version choose `Ubuntu (64-bit)`
 
 ![Section3](https://i.imgur.com/2JtRAzY.png)
 
-- On the memory section depending to your machine RAM capacity the minimun should be (254MB) but if you have enough memory use (1024MB)
+- On the memory section depending to your machine `RAM` capacity the minimun should be `(254MB)` but if you have enough memory use `(1024MB)`
 
 ![Section4](https://i.imgur.com/3KinU4J.png)
 
-- Leave the Hard drive section as default which is (Create a virutal hard disk now)
+- Leave the Hard drive section as default which is `(Create a virutal hard disk now)`
 
 ![Section5](https://i.imgur.com/OwYGx2s.png)
 
-- Leave the Hard disk file type to `(VDI)`
+- Leave the Hard disk file type to `(VDI)` 
 
 ![Section5](https://i.imgur.com/XPpGqxm.png)
 
-- Leave storage on physical hard disk to `(Dynamically allocated)`
+- Leave storage on physical hard disk to `(Dynamically allocated)` this will used the hard drive memory dinamically until it reach the max you gave it on the next step. 
 
 ![Section5](https://i.imgur.com/YGrvBmV.png)
 
-- For this machine the minimun for Ubuntu so it does not give you problem set the File location and size to (20.00GB)
+- For this machine the minimun for Ubuntu so it does not give you problem set the File location and `size to (20.00GB)`
 
 ![Section5](https://i.imgur.com/p2jIaGn.png)
 
-- After the Virtual Machine is created now you have to add the ISO that you download at the beginning 
+- After the Virtual Machine is created now you have to add the `ISO` that you download at the beginning 
 - Go to Storage section and click on top that it say `[Optical Drive]Empty`
 
 ![Section6](https://i.imgur.com/8Rfq6nZ.png)
@@ -87,19 +87,19 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 
 - On this step make sure you add the network adapters to the server 
 
-- Right click the ISP Ubuntu and click settings
+- `Right click` the `ISP Ubuntu` and click `settings`
 
 ![Section7](https://i.imgur.com/8w6rRfO.png)
 
 - On network adapter one leave it to `NAT`
-- Then go to Network Adapter 2 and change the network adapter to `Host-only Adapter` like the picture bellow.
+- Then go to Network Adapter 2 and change the network adapter to `WAN Environment` like the picture bellow.
 
 ![Section7](https://i.imgur.com/EB1ajQl.png)
 ![Section7](https://i.imgur.com/N2OBoxs.png)
 
 - On this part start the ISP ubuntu virtual box to start the setup. 
 
-- Click on the ISP Ubuntu then press start
+- Click on the `ISP Ubuntu` then press `start`
 
 ![Section8](https://i.imgur.com/wvUCwDs.png)
 
@@ -137,21 +137,21 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 
 ![Section9](https://i.imgur.com/xN9m2js.png)
 
-- Set the Hostname of you VM machine to whatever you want
+- Set the `Hostname` of you VM machine to whatever you want
 
 ![Section9](https://i.imgur.com/isHnTuW.png)
 
-- Set the full name for new user
+- Set the full name for `new user`
 
 ![Section9](https://i.imgur.com/SeJZZFJ.png)
 
 ![Section9](https://i.imgur.com/mmDpJK9.png)
 
-- Then set your Username for your account
+- Then set your `Username` for your account
 
 ![Section9](https://i.imgur.com/zuIqs7E.png)
 
-- Set the new user password
+- Set the new user `password`
 
 ![Section9](https://i.imgur.com/t4L1H5v.png)
 
@@ -159,71 +159,72 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 
 ![Section9](https://i.imgur.com/Ypjs1pV.png)
 
-- Select if you want to encrypt your home directory I advice to select no for this test lab
+- Select if you want to encrypt your home directory `I advice to select no for this test lab`
 
 ![Section9](https://i.imgur.com/Tfju0kx.png)
 
-- Select your Time zone if the one shown is correct press yes otherwise press no
+- Select your `Time zone` if the one shown is correct press yes otherwise press no
 
 ![Selection9](https://i.imgur.com/FHvvLvn.png)
 
-- Select Partition disks select the default the one on the picture.
+- Select Partition disks select the `default` the one on the picture.
 
 ![Selection9](https://i.imgur.com/ed9XOYY.png)
 
-- Select disk partition the default
+- Select disk partition the `default`
 
 ![Selection9](https://i.imgur.com/VGm3bD6.png)
 
-- On the next step select YES on configure LVM
+- On the next step select `YES` on configure LVM
 
 ![Selection9](https://i.imgur.com/btRTEMa.png)
 ![Selection9](https://i.imgur.com/K0Xme6H.png)
 
-- Select the partition size you need to leave it as default
+- Select the partition size `you need to leave it as default`
 
 ![Selection9](https://i.imgur.com/TiERK5h.png)
 
-- Press yes on write the changes to disks
+- Press `yes` on write the changes to disks
 
 ![Selection9](https://i.imgur.com/eTfOxHK.png)
 
-- Do not set a proxy leave black and press continue
+- `Do not` set a proxy leave black and press continue
 
 ![Selection9](https://i.imgur.com/ywLngCl.png)
 
-- The update question is all up to you. Can be setup to no auto updates or install security updates automatically
+- The update question is all up to you. Can be setup to `no auto updates` or `install security updates automatically`
 
 ![Selection9](https://i.imgur.com/2MzOrqS.png)
 
-- On the sofware selection for this lab leave default
+- On the `sofware selection` for this lab `leave default`
 
 ![Selection9](https://i.imgur.com/325nEqo.png)
 
-- on the install the grub boot loader question select YES
+- on the install the grub boot loader question select `YES`
 
 ![Selection9](https://i.imgur.com/ilxTd3J.png)
 
-- On the last question select continue
+- On the last question select `continue`
 
 ![Selection9](https://i.imgur.com/az5SGZO.png)
 
 ## Ubuntu Server Configuration <a id="Third"></a>
 
-3. After Reboot log in into computer with the username you setup early and enter password to log in
+3. After Reboot log in into computer with the `username` you setup early and enter `password` to log in
 
 ![Selection9](https://i.imgur.com/HjsqfkV.png)
 ![Selection9](https://i.imgur.com/avlp5hu.png)
 
+- First step run `sudo apt-get update` `sudo apt-get upgrade` to make sure the system is up to date. 
 - Enable ipv4 routing on Ubuntu. By default Ubuntu doesn't allow for routing on IP traffic.
-- To get this done you will need to edit `sysctl.conf`. 
+- To get this done you will need to edit `sysctl.conf` which is on the directory /etc/. 
 - This can be done by using nano like so, `sudo nano /etc/sysctl.conf`. 
-- It will require your root password since it effect the entire system when you edit this file.
+- It will require your `root password` since it effect the entire system when you edit this file.
 
 ![Selection9](https://i.imgur.com/cWJB3p5.png)
 ![Selection9](https://i.imgur.com/nkxml1h.png)
 
-- Go to the line that say `Uncomment the next line to enable packet forwarding for IPv4` and the remove the symbol `#` by removing the # sign this will make the program read and use that line to enable packet forwarding. 
+- Go to the line that say `Uncomment the next line to enable packet forwarding for IPv4` and the remove the symbol `#` by removing the `#` sign this will make the program read and use that line to `enable packet forwarding`. 
 
 ![Selection9](https://i.imgur.com/LJgDvBJ.png)
 
@@ -285,7 +286,7 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 
 ![Selection9](https://i.imgur.com/b4lVh9W.png)
 
-- Before running the fallowing command run `sudo apt-get update and upgrade` and `sudo apt-get install iptables-persistant` this will make the fallowin lines work correctly.  
+- Before running the following command run `sudo apt-get update and upgrade` and `sudo apt-get install iptables-persistant` this will make the followin lines work correctly.  
 - Then run this tree line on terminal like the picture bellow this will enable persistent on the iptables. 
 - `sudo apt-get install -y iptables-persistent`
 
@@ -313,4 +314,4 @@ The logical ideal of this tutorial is for you to be able to setup the ISP server
 ![Imgur](https://i.imgur.com/SmgzpkB.png)
 ![Imgur](https://i.imgur.com/njlW4bE.png)
 
-- After all this reboot Virtual Machine and move to next step pfsense setup.
+- After all this reboot Virtual Machine which can be done by running the following command `sudo reboot now` and move to next step pfsense setup.
