@@ -23,7 +23,7 @@ Build up a network, setup services, and secure the network based off the templat
 3. Setup the Virtual Environment:
 - TODO: Merge a whitehatter's guide
 4. Setup the Ubuntu ISP: 
-- TODO: Merge a whitehatter's guide
+- [Nestor Tutorial](guides/nestor/ISPsetup.md)
 5. Setup the PFsense box:
 - TODO: Merge a whitehatter's guide
 6. Setup the Ubuntu DNS:
