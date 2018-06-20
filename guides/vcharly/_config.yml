@@ -1,0 +1,9 @@
+theme: jekyll-theme-cayman
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM    
+
+gems:
+  - jemoji            
+  - jekyll-mentions
