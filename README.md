@@ -33,10 +33,10 @@ Build up a network, setup services, and secure the network based off the templat
 8. Setup Windows 10 (Window 7):
     - TODO: Merge a whitehatter's guide
 9. Setup Debian Email:
-    - [Leon's Tutorial](guides/vcharly/debain-email.md)
+    - [Leon's Tutorial](guides/leon/debain-email.md)
 10. Setup FTP server:
-    - [Josh's Tutorial](guides/araujo/FTP%Writeup.md)
-    - [Leon's Linux FTP Tutorial](guides/vcharly/vsftpd.md)
+    - [Josh's Tutorial](guides/araujo/FTP_Writeup.md)
+    - [Leon's Linux FTP Tutorial](guides/leon/vsftpd.md)
 11. Setup Web Apps:
     - TODO: Merge a whitehatter's guide
 12. Setup AD/DNS:
