@@ -12,12 +12,11 @@ Build, setup services, and secure the network based on the template below.
 </center>
 
 ##### Machines and IP
-<center>
+
 | Internal     | Local IP      |
 |--------------|---------------|
 | Phantom      | 172.20.240.10 |
 | Debian MySQL | 172.20.240.20 |
-</center>
 
 | User                    | Local IP       |
 |-------------------------|----------------|
