@@ -1,8 +1,8 @@
 ### Mission
-Get Whitehatters Computer Security Club memebers into the cybersecurity field.
+Through competing in CCDC competition, we aim to provide Whitehatters Computer Security Club members with valuable enterprise level experience that will be applicable to their future careers in the cybersecurity field.
 
 ##### Semester Framework
-Build up a network, setup services, and secure the network based off the template below.
+Build, setup services, and secure the network based on the template below.
 
 <center>
     <figure>
@@ -12,6 +12,7 @@ Build up a network, setup services, and secure the network based off the templat
 </center>
 
 ### Getting Started
+_Notice: Some of the guides below may be out of date due to the recent update of the CCDC network topology. Don't let that discourage you! Use these guides as a reference to build the new topology. We are currently working on new guides for the updated topology._ :smile:
 1. Download a virtualization program:
     - [Vitualbox](https://www.virtualbox.org/wiki/Downloads)
 2. Download the ISO Images:
