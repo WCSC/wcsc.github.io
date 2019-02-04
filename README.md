@@ -6,7 +6,7 @@ Build up a network, setup services, and secure the network based off the templat
 
 <center>
     <figure>
-        <img src="assets\images\2017Topology.png" style="border: 1px solid #000">
+        <img src="assets\images\CCDC_2019.png" style="border: 1px solid #000">
         <figcaption><center>Southeast Regional Cyber Defense Qualification Network Topology</center></figcaption>
     </figure>
 </center>
