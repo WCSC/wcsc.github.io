@@ -11,6 +11,24 @@ Build, setup services, and secure the network based on the template below.
     </figure>
 </center>
 
+##### Machines and IP
+| Internal     | Local IP      |
+|--------------|---------------|
+| Phantom      | 172.20.240.10 |
+| Debian MySQL | 172.20.240.20 |
+
+| User                    | Local IP       |
+|-------------------------|----------------|
+| Ubuntu DNS              | 172.20.242.10  |
+| 2008 R2 AD/DNS/Exchange | 172.20.242.200 |
+| Windows 8.1             | 172.20.242.100 |
+
+| Public                 | Local IP      |
+|------------------------|---------------|
+| Splunk                 | 172.20.241.20 |
+| CentOS E-Commerce      | 172.20.241.30 |
+| Fedora Webmail/WebApps | 172.20.241.40 |
+
 ### Getting Started
 _Notice: Some of the guides below may be out of date due to the recent update of the CCDC network topology. Don't let that discourage you! Use these guides as a reference to build the new topology. We are currently working on new guides for the updated topology._ :smile:
 1. Download a virtualization program:
